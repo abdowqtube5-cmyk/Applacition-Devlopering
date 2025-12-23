@@ -20,7 +20,7 @@ class LoginPro extends StatelessWidget {
       initialRoute: "/Welcome",
       getPages: [
         GetPage(name: "/Welcome", page: () => WelcomeScreen(),),
-        GetPage(name: "/Login", page: () => LoginScreen(),),
+        GetPage(name: "/Login", page: () => LoginScreen(), binding: AppBinding()),
         GetPage(name: "/Sginup", page: () => SginupScreen(), binding: AppBinding()),
       ],
     );
