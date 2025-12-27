@@ -8,4 +8,11 @@ class SginupController extends GetxController {
   TextEditingController controllerPhoneNumber = TextEditingController();
   TextEditingController controllerCreatePassword = TextEditingController();
   TextEditingController controllerConfirmPassword = TextEditingController();
+
+  bool isvisable = false;
+
+  void actionvisible() {
+    isvisable = !isvisable;
+    update();
+  }
 }
