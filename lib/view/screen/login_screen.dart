@@ -76,6 +76,11 @@ class LoginScreen extends GetView<LoginController> {
               text: "Login",
               color: Colors.teal[200],
               colorfont: Colors.white,
+              onPressed: () {
+                controller.aqeal() == true
+                    ? Get.toNamed("/Welcome")
+                    : Get.toNamed("/Sginup");
+              },
             ),
 
             SizedBox(height: 10),
@@ -101,10 +106,7 @@ class LoginScreen extends GetView<LoginController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Don’t Have Account? ",
-                    style: TextStyle(fontSize: 10),
-                  ),
+                  Text("Don’t Have Account? ", style: TextStyle(fontSize: 10)),
                   MaterialButton(
                     padding: EdgeInsets.only(right: 50),
                     onPressed: () {

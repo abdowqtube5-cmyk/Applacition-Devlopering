@@ -10,7 +10,6 @@ class SginupScreen extends GetView<SginupController> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -53,11 +52,10 @@ class SginupScreen extends GetView<SginupController> {
             ),
             SizedBox(height: 15),
 
-
             GetBuilder<SginupController>(
               builder: (SginupController controller) => TextformfieldSginup(
-                obscureText: controller.isvisable==false? true:false,
-                
+                obscureText: controller.isvisable == false ? true : false,
+
                 controller: controller.controllerCreatePassword,
                 hintText: "Create Password",
                 suffixIcon: IconButton(
@@ -71,14 +69,12 @@ class SginupScreen extends GetView<SginupController> {
               ),
             ),
 
-
-
             SizedBox(height: 15),
             GetBuilder(
               builder: (SginupController controller) => TextformfieldSginup(
-                obscureText: controller.isvisable==false? true:false,
+                obscureText: controller.isvisable == false ? true : false,
                 controller: controller.controllerConfirmPassword,
-                
+
                 hintText: "Confirm Password",
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -91,13 +87,14 @@ class SginupScreen extends GetView<SginupController> {
               ),
             ),
 
-
-
             SizedBox(height: 10),
             Button(
               text: "Sginup",
               color: Colors.teal[200],
               colorfont: Colors.white,
+              onPressed: () {
+                Get.toNamed("/Login");
+              },
             ),
             SizedBox(height: 5),
             MaterialButton(
