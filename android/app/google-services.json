@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236597917720",
+    "project_id": "oirhair",
+    "storage_bucket": "oirhair.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236597917720:android:7633379f78e4ed0a656b6d",
+        "android_client_info": {
+          "package_name": "com.example.na"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwOks4-fv07NT-5BQS0kiRphdMQvcEebU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

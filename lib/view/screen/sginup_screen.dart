@@ -54,8 +54,8 @@ class SginupScreen extends GetView<SginupController> {
 
             GetBuilder<SginupController>(
               builder: (SginupController controller) => TextformfieldSginup(
-                obscureText: controller.isvisable == false ? true : false,
-
+                obscureText: !controller.isvisable,
+                onChanged: (value) => controller.checkpasswordmatch(),
                 controller: controller.controllerCreatePassword,
                 hintText: "Create Password",
                 suffixIcon: IconButton(
@@ -72,9 +72,13 @@ class SginupScreen extends GetView<SginupController> {
             SizedBox(height: 15),
             GetBuilder(
               builder: (SginupController controller) => TextformfieldSginup(
-                obscureText: controller.isvisable == false ? true : false,
+                obscureText: !controller.isvisable,
                 controller: controller.controllerConfirmPassword,
-
+                onChanged: (Value) => controller.checkpasswordmatch(),
+                borderColor: controller.passwordMatch
+                    ? Colors.teal[200]
+                    : Colors.teal[200],
+                erorrText: controller.passwordMatch ? null : "كلمة المرور غير متطابقة",
                 hintText: "Confirm Password",
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -92,9 +96,7 @@ class SginupScreen extends GetView<SginupController> {
               text: "Sginup",
               color: Colors.teal[200],
               colorfont: Colors.white,
-              onPressed: () {
-                Get.toNamed("/Login");
-              },
+              onPressed: () => controller.dosginup(),
             ),
             SizedBox(height: 5),
             MaterialButton(

@@ -15,12 +15,9 @@ class LoginController extends GetxController {
   }
 
   bool aqeal() {
-    if (sginupController.controllerEmail.text.isEmpty &&
-        sginupController.controllerCreatePassword.text.isEmpty) {
-      return false;
-    }else if (sginupController.controllerEmail == controllerEmail &&
-            sginupController.controllerCreatePassword == controllerPassword) {
-          return true;
-        }else{return false;}
+    return sginupController.savedEmail.isNotEmpty &&
+        sginupController.savedPassword.isNotEmpty &&
+        controllerEmail.text == sginupController.savedEmail &&
+        controllerPassword.text == sginupController.savedPassword;
   }
 }

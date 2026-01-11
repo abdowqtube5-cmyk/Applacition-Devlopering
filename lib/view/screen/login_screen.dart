@@ -43,7 +43,7 @@ class LoginScreen extends GetView<LoginController> {
               builder: (LoginController controller) => TextformfieldSginup(
                 controller: controller.controllerPassword,
                 hintText: "Password",
-                obscureText: controller.isvisable == false ? true : false,
+                obscureText: !controller.isvisable,
                 suffixIcon: IconButton(
                   onPressed: () {
                     controller.actionvisible();
@@ -77,9 +77,11 @@ class LoginScreen extends GetView<LoginController> {
               color: Colors.teal[200],
               colorfont: Colors.white,
               onPressed: () {
-                controller.aqeal() == true
-                    ? Get.toNamed("/Welcome")
-                    : Get.toNamed("/Sginup");
+                if (controller.aqeal()) {
+                  Get.toNamed("/Welcome");
+                } else {
+                  Get.snackbar('Login failed', 'Wrong email or password');
+                }
               },
             ),
 
