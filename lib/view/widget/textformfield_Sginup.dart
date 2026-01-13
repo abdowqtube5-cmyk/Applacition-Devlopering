@@ -3,59 +3,48 @@ import 'package:flutter/material.dart';
 class TextformfieldSginup extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
-  final void Function()? onPressed;
   final Widget? suffixIcon;
-  final String? labelText;
+  final Widget? prefixIcon; // إضافة أيقونة في البداية
   final bool obscureText;
-  final Color? focusColor;
-  final Color? borderColor;
-  final Color? focusedborderColor;
   final String? erorrText;
   final void Function(String)? onChanged;
+
   const TextformfieldSginup({
     super.key,
-    required this.controller,
-    required this.hintText,
-    this.onPressed,
+    this.controller,
+    this.hintText,
     this.suffixIcon,
-    this.labelText,
+    this.prefixIcon,
     this.obscureText = false,
-    this.focusColor, 
-    this.borderColor, 
-    this.focusedborderColor, 
-    this.erorrText, 
+    this.erorrText,
     this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: TextFormField(
-        obscureText: obscureText,
-        obscuringCharacter: '.',
         controller: controller,
+        obscureText: obscureText,
         onChanged: onChanged,
+        textAlign: TextAlign.right, // محاذاة النص لليمين
         decoration: InputDecoration(
-          labelText: labelText,
-          filled: true,
-          fillColor: Colors.white,
           hintText: hintText,
-          hintStyle: TextStyle(color: const Color.fromARGB(255, 180, 180, 180)),
-
-          border: OutlineInputBorder(),
-          focusColor: focusColor,
-          
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor?? Colors.teal
-            , width: 2),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: focusedborderColor?? Colors.teal, width: 1),
-          ),
+          prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           errorText: erorrText,
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Colors.grey.shade300),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(color: Color(0xFF80CBC4), width: 2),
+          ),
         ),
       ),
     );

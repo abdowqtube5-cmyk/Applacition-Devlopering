@@ -11,138 +11,104 @@ class SginupScreen extends GetView<SginupController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFE0F2F1), // نفس الخلفية الفاتحة
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset("assets/images/1.png"),
-            SizedBox(height: 20),
+            const SizedBox(height: 60),
             Text(
-              "Create Account",
-              style: GoogleFonts.inter(
-                textStyle: TextStyle(fontSize: 35, color: Colors.teal[200]),
+              "إنشاء حساب جديد",
+              style: GoogleFonts.cairo(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
             ),
-
+            const SizedBox(height: 10),
             Text(
-              "Enter your Personal Data",
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(fontSize: 16, color: Colors.black),
-              ),
+              "أدخل بياناتك الشخصية للبدء",
+              style: GoogleFonts.cairo(fontSize: 14, color: Colors.black54),
             ),
-            SizedBox(height: 40),
-            TextformfieldSginup(
-              controller: controller.controllerFirstName,
-              hintText: "First Name",
-            ),
-            SizedBox(height: 15),
-            TextformfieldSginup(
-              controller: controller.controllerLastName,
-              hintText: "Last Name",
-            ),
-            SizedBox(height: 15),
-            TextformfieldSginup(
-              controller: controller.controllerEmail,
-              hintText: "Email",
-            ),
-            SizedBox(height: 15),
-            TextformfieldSginup(
-              controller: controller.controllerPhoneNumber,
-              hintText: "Phone Number",
-            ),
-            SizedBox(height: 15),
-
+            const SizedBox(height: 30),
+            
+            // حقول البيانات بتنسيق متناسق
+            _buildFieldLabel("الاسم الأول"),
+            TextformfieldSginup(controller: controller.controllerFirstName, hintText: "الاسم الأول"),
+            
+            const SizedBox(height: 15),
+            _buildFieldLabel("اسم العائلة"),
+            TextformfieldSginup(controller: controller.controllerLastName, hintText: "اسم العائلة"),
+            
+            const SizedBox(height: 15),
+            _buildFieldLabel("البريد الإلكتروني"),
+            TextformfieldSginup(controller: controller.controllerEmail, hintText: "example@mail.com"),
+            
+            const SizedBox(height: 15),
+            _buildFieldLabel("رقم الهاتف"),
+            TextformfieldSginup(controller: controller.controllerPhoneNumber, hintText: "05xxxxxxxx"),
+            
+            const SizedBox(height: 15),
+            _buildFieldLabel("كلمة المرور"),
             GetBuilder<SginupController>(
-              builder: (SginupController controller) => TextformfieldSginup(
+              builder: (controller) => TextformfieldSginup(
                 obscureText: !controller.isvisable,
                 onChanged: (value) => controller.checkpasswordmatch(),
                 controller: controller.controllerCreatePassword,
-                hintText: "Create Password",
+                hintText: "********",
                 suffixIcon: IconButton(
-                  onPressed: () async {
-                    controller.actionvisible();
-                  },
-                  icon: controller.isvisable == true
-                      ? Icon(Icons.visibility)
-                      : Icon(Icons.visibility_off),
+                  onPressed: () => controller.actionvisible(),
+                  icon: Icon(controller.isvisable ? Icons.visibility : Icons.visibility_off),
                 ),
               ),
             ),
 
-            SizedBox(height: 15),
-            GetBuilder(
-              builder: (SginupController controller) => TextformfieldSginup(
+            const SizedBox(height: 15),
+            _buildFieldLabel("تأكيد كلمة المرور"),
+            GetBuilder<SginupController>(
+              builder: (controller) => TextformfieldSginup(
                 obscureText: !controller.isvisable,
                 controller: controller.controllerConfirmPassword,
-                onChanged: (Value) => controller.checkpasswordmatch(),
-                borderColor: controller.passwordMatch
-                    ? Colors.teal[200]
-                    : Colors.teal[200],
+                onChanged: (value) => controller.checkpasswordmatch(),
                 erorrText: controller.passwordMatch ? null : "كلمة المرور غير متطابقة",
-                hintText: "Confirm Password",
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    controller.actionvisible();
-                  },
-                  icon: controller.isvisable == true
-                      ? Icon(Icons.visibility)
-                      : Icon(Icons.visibility_off),
-                ),
+                hintText: "********",
               ),
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 30),
+            
+            // زر الإنشاء المرتبط بالـ Logic الخاص بك
             Button(
-              text: "Sginup",
-              color: Colors.teal[200],
-              colorfont: Colors.white,
+              text: "إنشاء الحساب",
+              color: const Color(0xFF80CBC4),
               onPressed: () => controller.dosginup(),
             ),
-            SizedBox(height: 5),
-            MaterialButton(
-              onPressed: () {},
-              child: Image.asset("assets/images/3.png"),
+
+            const SizedBox(height: 20),
+            
+            // رابط العودة لتسجيل الدخول
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () => Get.toNamed("/Login"),
+                  child: Text("سجل دخولك", style: GoogleFonts.cairo(color: const Color(0xFF80CBC4), fontWeight: FontWeight.bold)),
+                ),
+                Text("لديك حساب بالفعل؟", style: GoogleFonts.cairo(fontSize: 13)),
+              ],
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/images/Vector 1.png"),
-                  Image.asset("assets/images/4.png"),
-                  Image.asset("assets/images/Vector 2.png"),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Button(
-              text: "Continue with Google",
-              color: Colors.teal[200],
-              colorfont: Colors.white,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already have an Account?",
-                    style: TextStyle(fontSize: 10),
-                  ),
-                  MaterialButton(
-                    padding: EdgeInsets.only(right: 50),
-                    onPressed: () {
-                      Get.toNamed("/Login");
-                    },
-                    child: Text(
-                      "Login",
-                      style: TextStyle(fontSize: 10, color: Colors.teal[200]),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const SizedBox(height: 40),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildFieldLabel(String label) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 40, bottom: 5),
+        child: Text(label, style: GoogleFonts.cairo(fontWeight: FontWeight.w600, fontSize: 14)),
       ),
     );
   }

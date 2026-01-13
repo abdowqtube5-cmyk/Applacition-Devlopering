@@ -30,18 +30,23 @@ class SginupController extends GetxController {
     update();
   }
 
-  void dosginup() {
-    if (controllerEmail.text.isNotEmpty &&
-        controllerCreatePassword.text.isNotEmpty &&
-        controllerCreatePassword.text == controllerConfirmPassword.text) {
-      savedEmail = controllerEmail.text.trim();
-      savedPassword = controllerCreatePassword.text.trim();
+// داخل ملف sginup_controller.dart
+void dosginup() {
+  if (controllerEmail.text.isNotEmpty && 
+      controllerCreatePassword.text.isNotEmpty && 
+      passwordMatch) {
+    
+    // حفظ البيانات (كما فعلت أنت)
+    savedEmail = controllerEmail.text.trim();
+    savedPassword = controllerCreatePassword.text.trim();
 
-      Get.toNamed("/Login");
-    } else {
-      Get.snackbar("Erorr", "Please enter valid data");
-    }
+    // بدلاً من الذهاب لـ Login مباشرة، اذهب للتحقق أولاً
+    Get.toNamed("/OTP"); 
+  } else {
+    Get.snackbar("تنبيه", "يرجى التأكد من صحة البيانات المدخلة", 
+      snackPosition: SnackPosition.BOTTOM);
   }
+}
 
   @override
   void onClose() {

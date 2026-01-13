@@ -6,25 +6,29 @@ class Button extends StatelessWidget {
   final Color? color;
   final Color? colorfont;
   final void Function()? onPressed;
+
   const Button({super.key, required this.text, this.color, this.colorfont, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed:onPressed,
-      child: Container(
-        width: 199.63,
-        height: 38.21,
-        decoration: BoxDecoration(
-          color: color ?? Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: const Color.fromARGB(255, 128, 203, 196)),
+    return Container(
+      width: double.infinity, // يأخذ العرض المتاح
+      margin: const EdgeInsets.symmetric(horizontal: 40),
+      height: 50,
+      child: MaterialButton(
+        onPressed: onPressed,
+        color: color ?? Colors.teal[200],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30), // شكل بيضاوي (Capsule)
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(fontSize: 18, color: colorfont),
+        elevation: 0,
+        child: Text(
+          text,
+          style: GoogleFonts.cairo( // تغيير الخط ليدعم العربية بشكل أفضل
+            textStyle: TextStyle(
+              fontSize: 18, 
+              color: colorfont ?? Colors.white,
+              fontWeight: FontWeight.bold
             ),
           ),
         ),
