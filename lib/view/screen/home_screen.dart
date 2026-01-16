@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../controller/home_controller.dart';
+
+class HomeScreen extends GetView<HomeController> {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // حقن المتحكم
+   
+
+    return Directionality(
+      textDirection: TextDirection.rtl, // لضبط التطبيق باللغة العربية
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF1F8E9),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: const Text('متجر الروائع', style: TextStyle(color: Colors.black)),
+          leading: const Icon(Icons.menu, color: Colors.black),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart, color: Colors.black))
+          ],
+        ),
+        body: Obx(() {
+          // حل مشكلة "الخطأ الأحمر": إذا كانت البيانات تحمل، اظهر مؤشر تحميل
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator(color: Colors.green));
+          }
+
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: GridView.builder(
+              itemCount: controller.products.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // عمودين كما في التصميم
+                childAspectRatio: 0.75, // التحكم في ارتفاع الكارت
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                final product = controller.products[index];
+                return _buildProductCard(product);
+              },
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  // ودجت مخصص لكل منتج ليكون الكود منظماً
+  Widget _buildProductCard(Map product) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 5, spreadRadius: 2)
+        ],
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset(product['image']!, fit: BoxFit.contain),
+            ),
+          ),
+          Text(product['name']!, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(product['price']!, style: const TextStyle(color: Colors.green)),
+          const SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+            child: const Text('أضف للسلة', style: TextStyle(color: Colors.white, fontSize: 12)),
+          ),
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+}

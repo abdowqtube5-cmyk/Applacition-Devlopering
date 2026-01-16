@@ -68,6 +68,14 @@ flutter:
     - assets/images/Vector 1.png
     - assets/images/Vector 2.png
     - assets/images/4.png
+    - assets/images/oilhaur1.png
+    - assets/images/oilhaur2.png
+    - assets/images/oilhaur3.png
+    - assets/images/oilhaur4.png
+    - assets/images/oilhaur5.png
+    - assets/images/oilhaur6.png
+    - assets/images/shmpoo.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
