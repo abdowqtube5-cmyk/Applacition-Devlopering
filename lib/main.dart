@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:na/core/app_binding.dart';
+
 import 'package:na/view/screen/home_screen.dart';
 import 'package:na/view/screen/login_screen.dart';
+import 'package:na/view/screen/product_details_screen.dart';
 import 'package:na/view/screen/sginup_screen.dart';
 import 'package:na/view/screen/splash_screen.dart';
 import 'package:na/view/screen/welcome_screen.dart';
@@ -48,7 +50,10 @@ class LoginPro extends StatelessWidget {
           name: "/home", 
           page: () => HomeScreen(),
           ),
-        
+        GetPage(
+          name: "/Product", 
+          page: () => ProductDetailsScreen(),
+          ),
       ],
     );
   }
