@@ -53,6 +53,7 @@ class LoginPro extends StatelessWidget {
         GetPage(
           name: "/Product", 
           page: () => ProductDetailsScreen(),
+          binding: AppBinding()
           ),
       ],
     );
