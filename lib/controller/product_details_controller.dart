@@ -1,18 +1,20 @@
 import 'package:get/get.dart';
-import 'package:na/controller/home_controller.dart';
+import 'package:na/model/static/product_model.dart';
 
 class ProductDetailsController extends GetxController {
-  var product = Get.find<HomeController>();
-  var products = HomeController();
-  var name = HomeController().name;
-  var image = HomeController().image;
-  var price = HomeController().price;
-  var desc = HomeController().desc;
+  ProductModel? product;
+
+  @override
+  void onInit() {
+    super.onInit();
+    // الحصول على المنتج من arguments
+    if (Get.arguments != null && Get.arguments is ProductModel) {
+      product = Get.arguments as ProductModel;
+    }
+  }
 
   @override
   void onClose() {
-    product.dispose();
-    
     super.onClose();
   }
 }

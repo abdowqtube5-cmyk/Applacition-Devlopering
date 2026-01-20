@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:na/controller/Shopping_cart_controller.dart';
 import 'package:na/controller/product_details_controller.dart';
+import 'package:na/model/static/product_model.dart';
 
 class ProductDetailsScreen extends GetView<ProductDetailsController> {
-  const ProductDetailsScreen({super.key}); // حذفنا المتغير من هنا
+  const ProductDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // الوصول للمنتج عبر المتحكم
     final item = controller.product;
+
+    // التحقق من وجود المنتج
+    if (item == null) {
+      return Scaffold(
+        body: Center(
+          child: Text("البيانات غير متوفرة"),
+        ),
+      );
+    }
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -34,18 +43,21 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // عرض الصورة باستخدام Hero
               Container(
                 height: Get.height * 0.45,
                 width: double.infinity,
                 color: const Color(0xFFF1F8E9),
                 child: Hero(
-                  tag: item.name, // التاج المتناسق مع الصفحة الرئيسية
-                  child: Image.asset(item.image, fit: BoxFit.contain),
+                  tag: item.name ?? 'product',
+                  child: Image.asset(
+                    item.image ?? '',
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(Icons.image_not_supported, size: 100);
+                    },
+                  ),
                 ),
               ),
-
-              // محتوى التفاصيل
               Container(
                 transform: Matrix4.translationValues(0.0, -30.0, 0.0),
                 padding: const EdgeInsets.all(25),
@@ -57,7 +69,7 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.name,
+                      item.name ?? 'غير متوفر',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -65,7 +77,7 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "${item.price} ر.س",
+                      "${item.price ?? '0'} ر.س",
                       style: const TextStyle(fontSize: 20, color: Colors.green),
                     ),
                     const SizedBox(height: 20),
@@ -74,26 +86,40 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 10),
-                    Text(item.desc ),
+                    Text(item.desc ?? 'لا يوجد وصف'),
                   ],
                 ),
               ),
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomButton(item.name),
+        bottomNavigationBar: _buildBottomButton(item),
       ),
     );
   }
-
-  // ودجت الزر السفلي
-  Widget _buildBottomButton(String name) {
+  
+  Widget _buildBottomButton(ProductModel item) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: ElevatedButton(
-        onPressed: () => Get.snackbar("السلة", "تمت إضافة $name"),
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-        child: const Text("إضافة للسلة", style: TextStyle(color: Colors.white)),
+      child: GetBuilder<ShoppingCartController>(
+        builder: (cartController) => ElevatedButton(
+          onPressed: () {
+            cartController.addProduct(item);
+            Get.snackbar(
+              "السلة", 
+              "تمت إضافة ${item.name ?? 'المنتج'} إلى السلة",
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            padding: EdgeInsets.symmetric(vertical: 15),
+          ),
+          child: const Text(
+            "إضافة للسلة",
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+        ),
       ),
     );
   }

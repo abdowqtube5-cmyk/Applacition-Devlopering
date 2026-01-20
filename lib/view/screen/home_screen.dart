@@ -24,7 +24,9 @@ class HomeScreen extends GetView<HomeController> {
           leading: const Icon(Icons.menu, color: Colors.black),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed("/Shopping");
+              },
               icon: const Icon(Icons.shopping_cart, color: Colors.black),
             ),
           ],
@@ -85,7 +87,7 @@ class HomeScreen extends GetView<HomeController> {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(product.price!, style: const TextStyle(color: Colors.green)),
-          
+
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
@@ -93,7 +95,12 @@ class HomeScreen extends GetView<HomeController> {
               controller.price = product.price!;
               controller.image = product.image!;
               controller.desc = product.desc!;
-              Get.toNamed("/Product");
+              Get.toNamed("/Product", arguments: ProductModel(
+                name: controller.name,
+                price: controller.price,
+                image: controller.image,
+                desc: controller.desc,
+              ));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
@@ -102,7 +109,7 @@ class HomeScreen extends GetView<HomeController> {
               ),
             ),
             child: const Text(
-              'أضف للسلة',
+              'اعرف المزيد',
               style: TextStyle(color: Colors.white, fontSize: 12),
             ),
           ),

@@ -1,12 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:na/controller/Shopping_cart_controller.dart';
+import 'package:na/controller/product_details_controller.dart';
 import 'package:na/core/app_binding.dart';
 
 import 'package:na/view/screen/home_screen.dart';
 import 'package:na/view/screen/login_screen.dart';
 import 'package:na/view/screen/product_details_screen.dart';
 import 'package:na/view/screen/sginup_screen.dart';
+import 'package:na/view/screen/shopping_cart_screen.dart';
 import 'package:na/view/screen/splash_screen.dart';
 import 'package:na/view/screen/welcome_screen.dart';
 
@@ -53,8 +56,17 @@ class LoginPro extends StatelessWidget {
         GetPage(
           name: "/Product", 
           page: () => ProductDetailsScreen(),
-          binding: AppBinding()
-          ),
+          binding: BindingsBuilder(() {
+            Get.lazyPut(() => ProductDetailsController());
+          }),
+        ),
+        GetPage(
+          name: "/Shopping", 
+          page: () => ShoppingCartScreen(),
+          binding: BindingsBuilder(() {
+            Get.find<ShoppingCartController>(); // للتأكد من وجوده
+          }),
+        ),
       ],
     );
   }
