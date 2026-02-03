@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:na/controller/Shopping_cart_controller.dart';
 import 'package:na/controller/product_details_controller.dart';
 import 'package:na/core/app_binding.dart';
+import 'package:na/core/services/myservice.dart';
 
 import 'package:na/view/screen/home_screen.dart';
 import 'package:na/view/screen/login_screen.dart';
@@ -18,9 +19,9 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await initialServices();
   runApp(const LoginPro());
 }
 
@@ -45,23 +46,17 @@ class LoginPro extends StatelessWidget {
           page: () => SginupScreen(),
           binding: AppBinding(),
         ),
+        GetPage(name: "/Splash", page: () => SplashScreen()),
+        GetPage(name: "/home", page: () => HomeScreen()),
         GetPage(
-          name: "/Splash", 
-          page: () => SplashScreen(),
-          ),
-        GetPage(
-          name: "/home", 
-          page: () => HomeScreen(),
-          ),
-        GetPage(
-          name: "/Product", 
+          name: "/Product",
           page: () => ProductDetailsScreen(),
           binding: BindingsBuilder(() {
             Get.lazyPut(() => ProductDetailsController());
           }),
         ),
         GetPage(
-          name: "/Shopping", 
+          name: "/Shopping",
           page: () => ShoppingCartScreen(),
           binding: BindingsBuilder(() {
             Get.find<ShoppingCartController>(); // للتأكد من وجوده

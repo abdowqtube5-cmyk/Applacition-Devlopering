@@ -8,10 +8,8 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    // حقن المتحكم
-
     return Directionality(
-      textDirection: TextDirection.rtl, // لضبط التطبيق باللغة العربية
+      textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F8E9),
         appBar: AppBar(
@@ -32,7 +30,6 @@ class HomeScreen extends GetView<HomeController> {
           ],
         ),
         body: Obx(() {
-          // حل مشكلة "الخطأ الأحمر": إذا كانت البيانات تحمل، اظهر مؤشر تحميل
           if (controller.isLoading.value) {
             return const Center(
               child: CircularProgressIndicator(color: Colors.green),
@@ -42,16 +39,23 @@ class HomeScreen extends GetView<HomeController> {
           return Padding(
             padding: const EdgeInsets.all(12.0),
             child: GridView.builder(
-              itemCount: controller.products.length,
+              itemCount: controller.products.data.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // عمودين كما في التصميم
-                childAspectRatio: 0.67, // التحكم في ارتفاع الكارت
+                crossAxisCount: 2,
+                childAspectRatio: 0.67,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
               itemBuilder: (context, index) {
-                final product = controller.products[index];
-                return _buildProductCard(product);
+                // استخراج البيانات من Firebase Document
+                final doc = controller.products.data[index];
+                final product = ProductModel(
+                  name: doc['name'],
+                  price: doc['price'],
+                  image: doc['image'],
+                  desc: doc['desc'],
+                );
+                return _buildProductCard(product, index);
               },
             ),
           );
@@ -60,8 +64,7 @@ class HomeScreen extends GetView<HomeController> {
     );
   }
 
-  // ودجت مخصص لكل منتج ليكون الكود منظماً
-  Widget _buildProductCard(ProductModel product) {
+  Widget _buildProductCard(ProductModel product, int index) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -87,20 +90,11 @@ class HomeScreen extends GetView<HomeController> {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(product.price!, style: const TextStyle(color: Colors.green)),
-
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
-              controller.name = product.name!;
-              controller.price = product.price!;
-              controller.image = product.image!;
-              controller.desc = product.desc!;
-              Get.toNamed("/Product", arguments: ProductModel(
-                name: controller.name,
-                price: controller.price,
-                image: controller.image,
-                desc: controller.desc,
-              ));
+              // إرسال بيانات المنتج إلى صفحة التفاصيل
+              Get.toNamed("/Product", arguments: product);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
