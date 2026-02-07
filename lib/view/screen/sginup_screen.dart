@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:na/controller/sginup_controller.dart';
-import 'package:na/view/widget/button.dart';
-import 'package:na/view/widget/textformfield_Sginup.dart';
+import 'package:oirhair/controller/sginup_controller.dart';
+import 'package:oirhair/view/widget/button.dart';
+import 'package:oirhair/view/widget/textformfield_Sginup.dart';
 
 class SginupScreen extends GetView<SginupController> {
   const SginupScreen({super.key});
@@ -30,23 +30,35 @@ class SginupScreen extends GetView<SginupController> {
               style: GoogleFonts.cairo(fontSize: 14, color: Colors.black54),
             ),
             const SizedBox(height: 30),
-            
+
             // حقول البيانات بتنسيق متناسق
             _buildFieldLabel("الاسم الأول"),
-            TextformfieldSginup(controller: controller.controllerFirstName, hintText: "الاسم الأول"),
-            
+            TextformfieldSginup(
+              controller: controller.controllerFirstName,
+              hintText: "الاسم الأول",
+            ),
+
             const SizedBox(height: 15),
             _buildFieldLabel("اسم العائلة"),
-            TextformfieldSginup(controller: controller.controllerLastName, hintText: "اسم العائلة"),
-            
+            TextformfieldSginup(
+              controller: controller.controllerLastName,
+              hintText: "اسم العائلة",
+            ),
+
             const SizedBox(height: 15),
             _buildFieldLabel("البريد الإلكتروني"),
-            TextformfieldSginup(controller: controller.controllerEmail, hintText: "example@mail.com"),
-            
+            TextformfieldSginup(
+              controller: controller.controllerEmail,
+              hintText: "example@mail.com",
+            ),
+
             const SizedBox(height: 15),
             _buildFieldLabel("رقم الهاتف"),
-            TextformfieldSginup(controller: controller.controllerPhoneNumber, hintText: "05xxxxxxxx"),
-            
+            TextformfieldSginup(
+              controller: controller.controllerPhoneNumber,
+              hintText: "05xxxxxxxx",
+            ),
+
             const SizedBox(height: 15),
             _buildFieldLabel("كلمة المرور"),
             GetBuilder<SginupController>(
@@ -57,7 +69,11 @@ class SginupScreen extends GetView<SginupController> {
                 hintText: "********",
                 suffixIcon: IconButton(
                   onPressed: () => controller.actionvisible(),
-                  icon: Icon(controller.isvisable ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(
+                    controller.isvisable
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
                 ),
               ),
             ),
@@ -69,13 +85,15 @@ class SginupScreen extends GetView<SginupController> {
                 obscureText: !controller.isvisable,
                 controller: controller.controllerConfirmPassword,
                 onChanged: (value) => controller.checkpasswordmatch(),
-                erorrText: controller.passwordMatch ? null : "كلمة المرور غير متطابقة",
+                erorrText: controller.passwordMatch
+                    ? null
+                    : "كلمة المرور غير متطابقة",
                 hintText: "********",
               ),
             ),
 
             const SizedBox(height: 30),
-            
+
             // زر الإنشاء المرتبط بالـ Logic الخاص بك
             Button(
               text: "إنشاء الحساب",
@@ -84,16 +102,25 @@ class SginupScreen extends GetView<SginupController> {
             ),
 
             const SizedBox(height: 20),
-            
+
             // رابط العودة لتسجيل الدخول
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
                   onPressed: () => Get.toNamed("/Login"),
-                  child: Text("سجل دخولك", style: GoogleFonts.cairo(color: const Color(0xFF80CBC4), fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "سجل دخولك",
+                    style: GoogleFonts.cairo(
+                      color: const Color(0xFF80CBC4),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                Text("لديك حساب بالفعل؟", style: GoogleFonts.cairo(fontSize: 13)),
+                Text(
+                  "لديك حساب بالفعل؟",
+                  style: GoogleFonts.cairo(fontSize: 13),
+                ),
               ],
             ),
             const SizedBox(height: 40),
@@ -108,7 +135,10 @@ class SginupScreen extends GetView<SginupController> {
       alignment: Alignment.centerRight,
       child: Padding(
         padding: const EdgeInsets.only(right: 40, bottom: 5),
-        child: Text(label, style: GoogleFonts.cairo(fontWeight: FontWeight.w600, fontSize: 14)),
+        child: Text(
+          label,
+          style: GoogleFonts.cairo(fontWeight: FontWeight.w600, fontSize: 14),
+        ),
       ),
     );
   }

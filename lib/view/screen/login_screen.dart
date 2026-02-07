@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:na/controller/login_controller.dart';
-import 'package:na/view/widget/button.dart';
-import 'package:na/view/widget/textformfield_Sginup.dart';
+import 'package:oirhair/controller/login_controller.dart';
+import 'package:oirhair/view/widget/button.dart';
+import 'package:oirhair/view/widget/textformfield_Sginup.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
@@ -26,7 +26,7 @@ class LoginScreen extends GetView<LoginController> {
               ),
             ),
             const SizedBox(height: 30),
-            
+
             // أيقونات الاختيار (هاتف / إيميل)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +34,10 @@ class LoginScreen extends GetView<LoginController> {
                 _buildCircleIcon(Icons.email, false),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Text("+", style: TextStyle(fontSize: 20, color: Colors.grey)),
+                  child: Text(
+                    "+",
+                    style: TextStyle(fontSize: 20, color: Colors.grey),
+                  ),
                 ),
                 _buildCircleIcon(Icons.phone, true),
               ],
@@ -46,7 +49,10 @@ class LoginScreen extends GetView<LoginController> {
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: EdgeInsets.only(right: 40, bottom: 8),
-                child: Text("أدخل رقم الهاتف", style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text(
+                  "أدخل رقم الهاتف",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             TextformfieldSginup(
@@ -62,7 +68,10 @@ class LoginScreen extends GetView<LoginController> {
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: EdgeInsets.only(right: 40, bottom: 8),
-                child: Text("أدخل السر", style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text(
+                  "أدخل السر",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             GetBuilder<LoginController>(
@@ -73,7 +82,11 @@ class LoginScreen extends GetView<LoginController> {
                 prefixIcon: const Icon(Icons.lock_outline, color: Colors.grey),
                 suffixIcon: IconButton(
                   onPressed: () => controller.actionvisible(),
-                  icon: Icon(controller.isvisable ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(
+                    controller.isvisable
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
                 ),
               ),
             ),
@@ -85,7 +98,10 @@ class LoginScreen extends GetView<LoginController> {
                 padding: const EdgeInsets.only(left: 40),
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text("هل نسيت كلمة السر؟", style: TextStyle(fontSize: 12, color: Colors.black54)),
+                  child: const Text(
+                    "هل نسيت كلمة السر؟",
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                  ),
                 ),
               ),
             ),
@@ -108,14 +124,19 @@ class LoginScreen extends GetView<LoginController> {
             const SizedBox(height: 30),
 
             // الفاصل ووسائل التواصل
-            const Text("أو سجل الدخول بواسطة", style: TextStyle(color: Colors.grey, fontSize: 12)),
+            const Text(
+              "أو سجل الدخول بواسطة",
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            ),
             const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildSocialIcon("assets/images/facebook_icon.png"), // تأكد من المسار
+                _buildSocialIcon(
+                  "assets/images/facebook_icon.png",
+                ), // تأكد من المسار
                 const SizedBox(width: 20),
-                _buildSocialIcon("assets/images/google_icon.png"), 
+                _buildSocialIcon("assets/images/google_icon.png"),
               ],
             ),
             const SizedBox(height: 30),
@@ -130,7 +151,9 @@ class LoginScreen extends GetView<LoginController> {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: isActive ? const Color(0xFF80CBC4).withOpacity(0.5) : Colors.white,
+        color: isActive
+            ? const Color(0xFF80CBC4).withOpacity(0.5)
+            : Colors.white,
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 2),
       ),
@@ -149,7 +172,10 @@ class LoginScreen extends GetView<LoginController> {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 15,
-        child: Icon(Icons.g_mobiledata, size: 30), // استبدلها بـ Image.asset عند توفر الصور
+        child: Icon(
+          Icons.g_mobiledata,
+          size: 30,
+        ), // استبدلها بـ Image.asset عند توفر الصور
       ),
     );
   }

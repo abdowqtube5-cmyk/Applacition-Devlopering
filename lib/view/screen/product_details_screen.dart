@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:na/controller/Shopping_cart_controller.dart';
-import 'package:na/controller/product_details_controller.dart';
-import 'package:na/model/static/product_model.dart';
+import 'package:oirhair/controller/Shopping_cart_controller.dart';
+import 'package:oirhair/controller/product_details_controller.dart';
+import 'package:oirhair/model/static/product_model.dart';
 
 class ProductDetailsScreen extends GetView<ProductDetailsController> {
   const ProductDetailsScreen({super.key});
@@ -13,11 +13,7 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
 
     // التحقق من وجود المنتج
     if (item == null) {
-      return Scaffold(
-        body: Center(
-          child: Text("البيانات غير متوفرة"),
-        ),
-      );
+      return Scaffold(body: Center(child: Text("البيانات غير متوفرة")));
     }
 
     return Directionality(
@@ -97,7 +93,7 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
       ),
     );
   }
-  
+
   Widget _buildBottomButton(ProductModel item) {
     return Padding(
       padding: const EdgeInsets.all(20),
@@ -106,7 +102,7 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
           onPressed: () {
             cartController.addProduct(item);
             Get.snackbar(
-              "السلة", 
+              "السلة",
               "تمت إضافة ${item.name ?? 'المنتج'} إلى السلة",
               snackPosition: SnackPosition.BOTTOM,
             );

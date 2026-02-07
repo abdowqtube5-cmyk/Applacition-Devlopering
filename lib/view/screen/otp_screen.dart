@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:na/view/widget/button.dart';
+import 'package:oirhair/view/widget/button.dart';
 import 'package:get/get.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -17,7 +17,10 @@ class OTPScreen extends StatelessWidget {
           children: [
             Text(
               "أدخل رمز التحقق",
-              style: GoogleFonts.cairo(fontSize: 26, fontWeight: FontWeight.bold),
+              style: GoogleFonts.cairo(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 15),
             Text(
@@ -26,7 +29,7 @@ class OTPScreen extends StatelessWidget {
               style: GoogleFonts.cairo(fontSize: 14, color: Colors.black54),
             ),
             const SizedBox(height: 40),
-            
+
             // صف مربعات الـ OTP
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,9 +40,9 @@ class OTPScreen extends StatelessWidget {
                 _buildOTPBox(context, "1"),
               ],
             ),
-            
+
             const SizedBox(height: 50),
-            
+
             // زر "التالي" كما في الصورة
             Button(
               text: "التالي",
@@ -62,13 +65,19 @@ class OTPScreen extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         // ignore: deprecated_member_use
-        color: const Color(0xFFA5D6A7).withOpacity(0.5), // لون أخضر فاتح شفاف كما في الصورة
+        color: const Color(
+          0xFFA5D6A7,
+        ).withOpacity(0.5), // لون أخضر فاتح شفاف كما في الصورة
         borderRadius: BorderRadius.circular(10),
       ),
       child: Center(
         child: Text(
           digit,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );

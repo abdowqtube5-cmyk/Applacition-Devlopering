@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:na/controller/Shopping_cart_controller.dart';
-import 'package:na/model/static/product_model.dart';
-import 'package:na/view/widget/productCard.dart';
+import 'package:oirhair/controller/Shopping_cart_controller.dart';
+import 'package:oirhair/model/static/product_model.dart';
+import 'package:oirhair/view/widget/productCard.dart';
 
 class ShoppingCartScreen extends GetView<ShoppingCartController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.orange[100],
-      appBar: AppBar(
-        title: Text("السلة"),
-        backgroundColor: Colors.orange,
-      ),
+      appBar: AppBar(title: Text("السلة"), backgroundColor: Colors.orange),
       body: GetBuilder<ShoppingCartController>(
         builder: (controller) {
           if (controller.products.isEmpty) {
@@ -23,7 +20,7 @@ class ShoppingCartScreen extends GetView<ShoppingCartController> {
               ),
             );
           }
-          
+
           return ListView.builder(
             padding: EdgeInsets.all(8),
             itemCount: controller.products.length,

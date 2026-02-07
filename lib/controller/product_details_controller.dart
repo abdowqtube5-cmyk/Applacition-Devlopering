@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:na/model/static/product_model.dart';
+import 'package:oirhair/model/static/product_model.dart';
 
 class ProductDetailsController extends GetxController {
   ProductModel? product;

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:na/model/data/product_data.dart';
-
+import 'package:oirhair/model/data/product_data.dart';
 
 class HomeController extends GetxController {
   // قائمة المنتجات (أضفت لك المنتجات التي ظهرت في الصور)

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:na/model/static/product_model.dart';
+import 'package:oirhair/model/static/product_model.dart';
 import '../../controller/home_controller.dart';
 
 class HomeScreen extends GetView<HomeController> {

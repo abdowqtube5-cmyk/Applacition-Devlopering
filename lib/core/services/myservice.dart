@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:na/model/data/product_data.dart';
+import 'package:oirhair/model/data/product_data.dart';
 
 class MyServices extends GetxService {
   late SharedPreferences sharedPreferences;

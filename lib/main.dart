@@ -1,18 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:na/controller/Shopping_cart_controller.dart';
-import 'package:na/controller/product_details_controller.dart';
-import 'package:na/core/app_binding.dart';
-import 'package:na/core/services/myservice.dart';
+import 'package:oirhair/controller/Shopping_cart_controller.dart';
+import 'package:oirhair/controller/product_details_controller.dart';
+import 'package:oirhair/core/app_binding.dart';
+import 'package:oirhair/core/services/myservice.dart';
 
-import 'package:na/view/screen/home_screen.dart';
-import 'package:na/view/screen/login_screen.dart';
-import 'package:na/view/screen/product_details_screen.dart';
-import 'package:na/view/screen/sginup_screen.dart';
-import 'package:na/view/screen/shopping_cart_screen.dart';
-import 'package:na/view/screen/splash_screen.dart';
-import 'package:na/view/screen/welcome_screen.dart';
+import 'package:oirhair/view/screen/home_screen.dart';
+import 'package:oirhair/view/screen/login_screen.dart';
+import 'package:oirhair/view/screen/product_details_screen.dart';
+import 'package:oirhair/view/screen/sginup_screen.dart';
+import 'package:oirhair/view/screen/shopping_cart_screen.dart';
+import 'package:oirhair/view/screen/splash_screen.dart';
+import 'package:oirhair/view/screen/welcome_screen.dart';
 
 import 'firebase_options.dart';
 
